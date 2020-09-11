@@ -1,14 +1,19 @@
+# Importing the only library required
 import turtle
 
+# Creating the screen for the game
 SCREEN = turtle.Screen()
 SCREEN.title("PONG PONG")
 SCREEN.bgcolor("black")
 SCREEN.setup(width = 800, height = 600)
 SCREEN.tracer(0)
 
+# Score bars
 SCORE_A = 0
 SCORE_B = 0
 
+# The main two bars by which you will be able to hit the random ball
+# PADDLE A
 PADDLE_A = turtle.Turtle()
 PADDLE_A.speed(0)
 PADDLE_A.shape("square")
@@ -17,6 +22,7 @@ PADDLE_A.shapesize(stretch_wid = 5, stretch_len = 0.5)
 PADDLE_A.penup()
 PADDLE_A.goto(-360, 0)
 
+# PADDLE B
 PADDLE_B = turtle.Turtle()
 PADDLE_B.speed(5)
 PADDLE_B.shape("square")
@@ -25,6 +31,7 @@ PADDLE_B.shapesize(stretch_wid = 5, stretch_len = 0.5)
 PADDLE_B.penup()
 PADDLE_B.goto(360, 0)
 
+# CODE TO MAKE YOUR BALLS BOUNCE
 Ball = turtle.Turtle()
 Ball.speed(0)
 Ball.shape("circle")
@@ -34,6 +41,7 @@ Ball.goto(0, 0)
 Ball.dx = 0.3
 Ball.dy = -0.3
 
+# I Don't really remember why I named it "pen"
 pen = turtle.Turtle()
 pen.speed(0)
 pen.color("white")
@@ -43,12 +51,12 @@ pen.goto(0, 260)
 pen.write("Player A: 0   Player B: 0", align = "center",
           font = ("Courier", 25, "normal"))
 
-
+# Basic functions
+# Paddle A
 def paddle_a_up():
     y = PADDLE_A.ycor()
     y += 20
     PADDLE_A.sety(y)
-
 
 def paddle_a_down():
     y = PADDLE_A.ycor()
@@ -56,18 +64,18 @@ def paddle_a_down():
     PADDLE_A.sety(y)
 
 
+# Paddle B
 def paddle_b_up():
     y = PADDLE_B.ycor()
     y += 20
     PADDLE_B.sety(y)
-
 
 def paddle_b_down():
     y = PADDLE_B.ycor()
     y -= 20
     PADDLE_B.sety(y)
 
-
+# Code to control using the keyboard
 SCREEN.listen()
 SCREEN.onkeypress(paddle_a_up, "w")
 SCREEN.onkeypress(paddle_a_down, "s")
@@ -112,10 +120,7 @@ while True:
 
 
 
-
-
-
-
+# RUN... RUN... RUN... RUN... RUN...
 def run(config_path):
     config = neat.config.Config(neat.DefaultGenome, neat.DefaultReproduction, neat.DefaultSpeciesSet,
                                 neat.DefaultStagnation, config_path)
